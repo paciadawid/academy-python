@@ -1,16 +1,18 @@
 class Animal:
 
     def __init__(self, name):
-        self.name = name
+        self._name = name
 
-    def set_a_name(self, new_name):
-        self.name = new_name
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, new_name):
+        self._name = new_name
 
     def print_name(self):
         print(self.name)
-
-    def get_name(self):
-        return self.name
 
 
 class Cat(Animal):
@@ -21,12 +23,6 @@ class Cat(Animal):
 
     def calculate_food(self, mass):
         return mass * 7
-
-
-pajton = Cat("dachowiec", "Pajton")
-pajton.print_name()
-print(f"Food needed: {pajton.calculate_food(4.5)}")
-
 
 
 class Person:
@@ -46,8 +42,15 @@ class Person:
     def change_surname(self, new_surname):
         self.surname = new_surname
 
-# jan = Person("Jan", "Testowy", 1999)
-# jan.print_full_name()
-# jan.change_surname("Nietestowy")
-# jan.print_full_name()
-# print(jan.get_age())
+
+class Student(Person):
+
+    def __init__(self, name, surname, year_of_birth, grades=[]):
+        super().__init__(name, surname, year_of_birth)
+        self.grades = grades
+
+    def add_grade(self, grade):
+        self.grades.append(grade)
+
+    def calculate_average(self):
+        return round(sum(self.grades) / len(self.grades))
