@@ -11,6 +11,7 @@ class TestIP(unittest.TestCase):
         # self.assertEqual("54.86.50.139" ,res.json()["ip"])
         self.assertEqual(dict, type(res.json()))
         self.assertEqual(200, res.status_code)
+        self.assertRegex(res.json()["ip"], "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}")
 
     def test_text_format(self):
         res = requests.get("https://api.ipify.org")

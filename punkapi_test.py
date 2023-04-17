@@ -20,7 +20,9 @@ class TestPunkAPI(unittest.TestCase):
             "page": 4,
             "per_page": 40
         }
-        requests.get(self.base_url, params=params)
+        res_body = requests.get(self.base_url, params=params).json()
+        self.assertEqual(121, res_body[0]["id"])
+        self.assertEqual(40, len(res_body))
 
     def test_ids_1_to_5(self):
         params = {
@@ -40,7 +42,11 @@ class TestPunkAPI(unittest.TestCase):
             "brewed_before": "01-2011",
             "brewed_after": "12-2009"
         }
-        requests.get(self.base_url, params=params)
+        res_json = requests.get(self.base_url, params=params).json()
+        for beer in res_json:
+            # data = beer["first_brewed"].split("/")
+            # self.assertEqual(2010, data[1])
+            self.assertIn("2010", beer["first_brewed"])
 
 
 if __name__ == '__main__':
