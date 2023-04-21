@@ -34,6 +34,13 @@ class PokeAPITests(unittest.TestCase):
         # self.assertEqual(str(first_id), id)  # 2
         # self.assertIn(str(first_id), res_json["results"][0]["url"])  # 3
 
+    def test_shapes_and_ids(self):
+        res_json = self.api_handler.get_list_of_shapes()
+        self.assertEqual(res_json["count"], len(res_json["results"]))
+        third_shape = res_json["results"][2]["name"]
+        res_json = self.api_handler.get_shape_by_name(third_shape)
+        self.assertEqual(3, res_json["id"])
+
 
 if __name__ == '__main__':
     unittest.main()
