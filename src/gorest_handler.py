@@ -17,3 +17,9 @@ class APIHandler:
         res = requests.get(f"{self.base_url}{self.user_endpoint}/{user_id}", headers=self.headers)
         assert res.status_code == expected_status_code
         return res.json()
+
+    def update_user(self, user_id, body):
+        pass
+
+    def delete_user(self, user_id):
+        pass

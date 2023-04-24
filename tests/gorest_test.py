@@ -29,5 +29,14 @@ class GorestTest(unittest.TestCase):
         }
         self.api_handler.create_user(body, expected_status_code=422)
 
+    def test_e2e_flow(self):
+        self.api_handler.create_user()
+        self.api_handler.get_user_by_id()
+        self.api_handler.update_user()
+        self.api_handler.get_user_by_id()
+        self.api_handler.delete_user()
+        self.api_handler.get_user_by_id()
+
+
 if __name__ == '__main__':
     unittest.main()
