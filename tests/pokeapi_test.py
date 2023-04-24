@@ -2,7 +2,7 @@ import unittest
 
 import requests
 
-from src.api_handler import APIHandler
+from src.pokeapi_handler import APIHandler
 
 
 class PokeAPITests(unittest.TestCase):
