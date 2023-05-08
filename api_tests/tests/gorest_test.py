@@ -1,6 +1,6 @@
 import unittest
 from faker import Faker
-from src.gorest_handler import APIHandler
+from api_tests.src.gorest_handler import APIHandler
 
 
 class GorestTest(unittest.TestCase):
