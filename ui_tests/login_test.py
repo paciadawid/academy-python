@@ -20,9 +20,15 @@ class TestLogin(unittest.TestCase):
         self.driver.find_element(By.NAME, "email").send_keys("seleniumremote@gmail.com")
         self.driver.find_element(By.NAME, "password").send_keys("tester")
         self.driver.find_element(By.XPATH, "//button[@data-qa='login-button']").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".fa-user")  # 1 implicitly wait up to 10s for element
+        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".fa-user")))  # 2
 
-        # self.driver.find_element(By.CSS_SELECTOR, ".fa-user")
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, ".fa-user")))
+    def test_empty_password(self):
+        self.driver.find_element(By.XPATH, "//a[@href='/login']").click()
+        self.driver.find_element(By.NAME, "email").send_keys("seleniumremote@gmail.com")
+        self.driver.find_element(By.XPATH, "//button[@data-qa='login-button']").click()
+        password_field = self.driver.find_element(By.NAME, "password")
+        self.assertTrue(password_field.get_property("validity")["valueMissing"])
 
     def tearDown(self) -> None:
         self.driver.quit()
