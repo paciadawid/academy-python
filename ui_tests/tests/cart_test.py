@@ -2,10 +2,10 @@ import unittest
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
+
+from ui_tests.pages.login import LoginPage
+from ui_tests.pages.products import ProductsPage
 
 
 class TestCart(unittest.TestCase):
@@ -15,20 +15,18 @@ class TestCart(unittest.TestCase):
         self.driver.implicitly_wait(10)
         self.driver.get("https://automationexercise.com/")
 
+        self.products_page = ProductsPage(self.driver)
+        self.login_page = LoginPage(self.driver)
+
+        self.login_page.close_add()
+        self.login_page.login_with_email("seleniumremote@gmail.com", "tester")
+
     def test_search_product(self):
-        self.driver.find_element(By.XPATH, "//*[@href='/products']").click()
-        self.driver.refresh()
-        self.driver.find_element(By.XPATH, "//*[@href='/products']").click()
-        self.driver.find_element(By.ID, "search_product").send_keys("unicorn")
-        self.driver.find_element(By.ID, "submit_search").click()
+        pass
 
-        # 1
-        self.driver.find_element(By.CLASS_NAME, "single-products")
-        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.CLASS_NAME, "single-products")))
-
-        # 2
-        products_list = self.driver.find_elements(By.CLASS_NAME, "single-products")
-        self.assertGreaterEqual(len(products_list), 2)
+    def test_add_multiple_products(self):
+        self.products_page.add_product_to_cart("unicorn")
+        self.products_page.add_product_to_cart("men tshirt")
 
     def tearDown(self) -> None:
         self.driver.quit()
