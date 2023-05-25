@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from ui_tests.pages.base import BasePage
-
+from time import sleep
 
 class LoginPage(BasePage):
     login_tab_selector = (By.XPATH, "//a[@href='/login']")
@@ -17,6 +17,7 @@ class LoginPage(BasePage):
         self.driver.find_element(*self.email_field_selector).send_keys(email)
         self.driver.find_element(*self.password_field_selector).send_keys(password)
         self.driver.find_element(*self.login_button_selector).click()
+        sleep(2)
 
     def check_if_logged_in(self):
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(self.user_tab_selector))
