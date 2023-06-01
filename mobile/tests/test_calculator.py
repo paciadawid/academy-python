@@ -18,6 +18,7 @@ class MyTestCase(unittest.TestCase):
         desired_caps['app'] = app_path
         desired_caps["automationName"] = "uiautomator2"
 
+
         self.driver = webdriver.Remote('http://localhost:4723', desired_caps)
 
         self.main_screen = MainScreen(self.driver)
@@ -25,6 +26,10 @@ class MyTestCase(unittest.TestCase):
     def test_add_2_values(self):
         self.main_screen.add_values(5, 7)
         self.assertEqual(12, self.main_screen.get_result())
+
+    def test_arcsin_out_of_range(self):
+        self.main_screen.arcsin(9)
+        self.assertEqual("Domain error", self.main_screen.get_message_error())
 
     def tearDown(self) -> None:
         self.driver.quit()
