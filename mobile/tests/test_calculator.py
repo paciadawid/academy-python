@@ -18,7 +18,6 @@ class MyTestCase(unittest.TestCase):
         desired_caps['app'] = app_path
         desired_caps["automationName"] = "uiautomator2"
 
-
         self.driver = webdriver.Remote('http://localhost:4723', desired_caps)
 
         self.main_screen = MainScreen(self.driver)
