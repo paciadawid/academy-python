@@ -50,7 +50,7 @@ class Student(Person):
         self.grades = grades
 
     def add_grade(self, grade):
-        self.grades.append(grade)
+        self.grades.append(int(grade))
 
     def calculate_average(self):
         return round(sum(self.grades) / len(self.grades))

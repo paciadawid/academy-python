@@ -23,3 +23,30 @@ def step_impl(context, name, surname):
     # assert context.student.print_full_name() == f"{name} {surname}"
     assert_that(context.student.name, equal_to(name))
     assert_that(context.student.surname, equal_to(surname))
+
+
+@when('I add grade "{grade}"')
+def step_impl(context, grade):
+    context.student.add_grade(grade)
+
+
+@then('average score is "{avg_score}"')
+def step_impl(context, avg_score):
+    assert_that(context.student.calculate_average(), equal_to(int(avg_score)))
+
+
+@then('"{grade}" is in grade list')
+def step_impl(context, grade):
+    assert_that(context.student.grades, has_item(int(grade)))
+
+
+@when("I add grades")
+def step_impl(context):
+    for row in context.table:
+        context.student.add_grade(row["grade"])
+
+
+@then('"{grades}" are in grade list')
+def step_impl(context, grades):
+    grades = list(map(int, grades.split(",")))
+    assert_that(context.student.grades, equal_to(grades))

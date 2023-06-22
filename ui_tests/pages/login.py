@@ -9,7 +9,7 @@ class LoginPage(BasePage):
     email_field_selector = (By.NAME, "email")
     password_field_selector = (By.NAME, "password")
     login_button_selector = (By.XPATH, "//button[@data-qa='login-button']")
-    user_tab_selector = (By.CSS_SELECTOR, ".fa-user")
+    user_tab_selector = (By.CSS_SELECTOR, ".fa-userrrr")
     wrong_password_selector = (By.CSS_SELECTOR, ".login-form p")
 
     def login_with_email(self, email, password):
