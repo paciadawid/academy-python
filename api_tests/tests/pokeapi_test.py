@@ -2,12 +2,14 @@ import unittest
 
 from api_tests.src.pokeapi_handler import APIHandler
 
+import allure
 
 class PokeAPITests(unittest.TestCase):
 
     def setUp(self) -> None:
         self.api_handler = APIHandler()
 
+    @allure.severity(severity_level=allure.severity_level.CRITICAL)
     def test_default_list_of_pokemons(self):
         res_json = self.api_handler.get_list_of_pokemons()
         self.assertEqual(1281, res_json["count"])
@@ -37,7 +39,7 @@ class PokeAPITests(unittest.TestCase):
         self.assertEqual(res_json["count"], len(res_json["results"]))
         third_shape = res_json["results"][2]["name"]
         res_json = self.api_handler.get_shape_by_name(third_shape)
-        self.assertEqual(3, res_json["id"])
+        self.assertEqual(4, res_json["id"])
 
 
 if __name__ == '__main__':
