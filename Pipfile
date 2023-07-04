@@ -8,6 +8,10 @@ requests = "*"
 selenium = "*"
 faker = "*"
 webdriver-manager = "*"
+nose2 = "*"
+behave = "*"
+allure-behave = "*"
+pyhamcrest = "*"
 
 [dev-packages]
 

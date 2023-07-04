@@ -1,3 +1,6 @@
+result-docker
+results
+*.apk
 .idea
 *.log
 *.exe
