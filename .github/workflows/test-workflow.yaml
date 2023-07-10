@@ -13,5 +13,6 @@
           run:
             pip install pipenv
             pipenv install
+            pipenv install pipenv
         - name: Linter
           run: pipenv run pylint *
