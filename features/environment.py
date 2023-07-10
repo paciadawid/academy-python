@@ -8,7 +8,9 @@ from ui_tests.pages.login import LoginPage
 
 def before_scenario(context, scenario):
     options = webdriver.ChromeOptions()
-    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    options.add_argument('--headless')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument("--no-sandbox")
     context.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     context.driver.implicitly_wait(10)
     context.driver.get("https://automationexercise.com/")
