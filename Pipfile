@@ -12,6 +12,7 @@ nose2 = "*"
 behave = "*"
 allure-behave = "*"
 pyhamcrest = "*"
+pylint = "*"
 
 [dev-packages]
 
