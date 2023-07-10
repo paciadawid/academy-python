@@ -13,4 +13,4 @@ RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable 
 RUN apt-get -y update
 RUN apt-get install -y google-chrome-stable
 #CMD ["pipenv", "run", "nose2", "ui_tests.tests.login_test"]
-CMD ["pipenv", "run", "behave", "-f", "allure_behave.formatter:AllureFormatter", "-o", "result-folder-docker", "features/login.feature"]
+CMD ["pipenv", "run", "behave", "-f", "allure_behave.formatter:AllureFormatter", "-o", "result-folder-docker"]
