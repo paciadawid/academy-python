@@ -10,7 +10,7 @@
           with:
             python-version: "3.11"
         - name: Install depencencies
-          run:
+          run: |
             pip install pipenv
             pipenv install
             pipenv install pipenv
